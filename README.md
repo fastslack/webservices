@@ -8,16 +8,37 @@ For more details join #webservices channel at https://glip.com/
 How to install
 ====
 * Install a full current Joomla somewhere
-* git clone https://github.com/joomla-projects/webservices.git OR https://github.com/chrisdavenport/webservices.git
-* Zip or tar-gzip everything in the /component directory
-* Install component package file as an extension in the usual way
-* Copy all the files from the github clone to the web root of the CMS
-* sudo composer install
-* Copy config.dist.json to config.json
-* Edit config.json database credentials
+* $ cd JOOMLA_ROOT
+* Edit composer.json
+* Add into composer.json
+```
+$ git diff composer.json
+diff --git a/composer.json b/composer.json
+index 9a1b071..1592c83 100644
+--- a/composer.json
++++ b/composer.json
+@@ -5,6 +5,7 @@
+     "keywords": ["joomla", "cms"],
+     "homepage": "https://github.com/joomla/joomla-cms",
+     "license": "GPL-2.0+",
++    "minimum-stability" : "dev",
+     "config": {
+         "platform": {
+             "php": "5.3.10"
+@@ -35,7 +36,8 @@
+         "symfony/polyfill-php55": "~1.2",
+         "symfony/polyfill-php56": "~1.0",
+         "symfony/yaml": "2.*",
+-        "simplepie/simplepie": "1.3.1"
++        "simplepie/simplepie": "1.3.1",
++        "matware-lab/webservices": "dev-develop"
+     },
+     "require-dev": {
+         "phpunit/phpunit": "4.*",
+```
+* $ composer update --ignore-platform-reqs
+* Log in to Administrator, go to Discover extension and install Webservices component
 * Copy /www/htaccess.txt to /www/.htaccess and edit RewriteBase if required
-* Log in to Administrator and go to Components -> Webservices
-* Install web services one-by-one because batch doesn't work.
 * Test
 
 WARNING: Do not install on a public server with data you care about.  The current version is *totally* insecure!
@@ -125,21 +146,6 @@ resource using the "catid" field in the Categories resource to filter the linked
 
 Note that the link rel visible in the public data will be that given in the linkRel attribute.  The displayName attribute
 must correspond with the name of the linked resource.  @TODO This probably needs to be fixed/changed as it's not intuitive.
-
-How to install [OLD - These instructions don't work at present]
-====
-
-1. Download release from releases packages and install
-
-or
-
-1. Rename build.properties.dist to build.properties and change settings inside. Run extension_packager.xml as a PHING file to get latest packages and install them
-
-
-2. Enable Webservices plugin and enable webservices option in that same plugin (you can enable SOAP there too)
-
-3. Go to Components -> Webservices and install one of the existing 3 webservices or create a new one
-
 
 Tips
 ====
