@@ -12,7 +12,7 @@
         "joomla/database": "~1.2",
         "joomla/input": "~1.2",
         "joomla/filter": "~1.1",
-        "joomla/event": "~1.1",
+        "joomla/event": "~2.0@dev",
         "joomla/uri": "~1.1",
         "joomla/filesystem": "~1.2",
         "joomla/authentication": "^1.1.1",
