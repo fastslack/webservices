@@ -37,7 +37,7 @@ class ConfigurationProvider implements ServiceProviderInterface
 	public function __construct()
 	{
 		// Set the configuration file path for the application.
-		$file = JPATH_API . '/config.json';
+		$file = dirname(dirname(__DIR__)) . '/config.json';
 
 		// Verify the configuration exists and is readable.
 		if (!is_readable($file))

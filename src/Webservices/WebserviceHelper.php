@@ -16,7 +16,7 @@ namespace Joomla\Webservices\Webservices;
  */
 class WebserviceHelper
 {
-	const WEBSERVICEPATH = 'www/media/webservices/webservices';
+	const WEBSERVICEPATH = 'media/webservices/webservices';
 
 	/**
 	 * Get Webservices path
@@ -27,7 +27,7 @@ class WebserviceHelper
 	 */
 	public static function getWebservicesPath()
 	{
-		return JPATH_API . '/' . self::WEBSERVICEPATH;
+		return JPATH_ROOT . "/" . self::WEBSERVICEPATH;
 	}
 
 	/**
