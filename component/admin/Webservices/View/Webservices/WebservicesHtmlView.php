@@ -121,7 +121,7 @@ class WebservicesHtmlView extends DefaultHtmlView
 
 		// Load the submenu.
 		Helper::addSubmenu('webservices');
-		//$this->sidebar = \JHtmlSidebar::render();
+		$this->sidebar = \JHtmlSidebar::render();
 
 		return parent::render();
 	}
@@ -148,8 +148,7 @@ class WebservicesHtmlView extends DefaultHtmlView
 		$user = \JFactory::getUser();
 		$canDo		= \JHelperContent::getActions('com_webservices');
 
-		// Get the toolbar object instance
-		$bar = \JToolBar::getInstance('toolbar');
+		$bar  = \JToolbar::getInstance('toolbar');
 
 		// Prepare the toolbar.
 		\JToolbarHelper::title($this->getTitle(), 'folder');

@@ -9,6 +9,11 @@
 namespace Webservices\Model;
 
 use Joomla\Registry\Registry;
+use Joomla\Event\Event;
+use Joomla\Event\Dispatcher;
+use Joomla\Event\DispatcherAwareInterface;
+use Joomla\Event\DispatcherAwareTrait;
+use Joomla\Event\DispatcherInterface;
 
 use Webservices\Helper;
 
@@ -729,10 +734,14 @@ class WebservicesModel extends \JModelDatabase
 		\JPluginHelper::importPlugin($group);
 
 		// Get the dispatcher.
-		$dispatcher = \JDispatcher::getInstance();
+		$dispatcher = new Dispatcher;
+
+		$event = new Event('onContentPrepareForm');
+		$event->setArgument('form', $form);
+		$event->setArgument('data', $data);
 
 		// Trigger the form preparation event.
-		$results = $dispatcher->trigger('onContentPrepareForm', array($form, $data));
+		$results = $dispatcher->dispatch('onContentPrepareForm', $event);
 
 		// Check for errors encountered while preparing the form.
 		if (count($results) && in_array(false, $results, true))
