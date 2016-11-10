@@ -2,13 +2,12 @@
 /**
  * Webservices component for Joomla! CMS
  *
- * @copyright  Copyright (C) 2004 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright  Copyright (C) 2004 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later
  */
 
 namespace Webservices\Model;
 
-use Joomla\Registry\Registry;
 use Joomla\Event\Event;
 use Joomla\Event\Dispatcher;
 use Joomla\Event\DispatcherAwareInterface;
@@ -22,16 +21,8 @@ use Webservices\Helper;
  *
  * @since  1.0
  */
-class WebservicesModel extends \JModelDatabase
+class WebservicesModel extends FormModelBase
 {
-	/**
-	 * The object context
-	 *
-	 * @var    string
-	 * @since  1.0
-	 */
-	protected $context;
-
 	/**
 	 * Name of the filter form to load
 	 *
@@ -86,9 +77,8 @@ class WebservicesModel extends \JModelDatabase
 	 */
 	public function __construct($context, Registry $state = null, \JDatabaseDriver $db = null)
 	{
-		parent::__construct($state, $db);
+		parent::__construct($context, $state, $db);
 
-		$this->context    = $context;
 		$this->sortFields = array('w.id');
 	}
 
@@ -714,45 +704,5 @@ class WebservicesModel extends \JModelDatabase
 		}
 
 		return $data;
-	}
-
-	/**
-	 * Method to allow derived classes to preprocess the form.
-	 *
-	 * @param   JForm   $form   A JForm object.
-	 * @param   mixed   $data   The data expected for the form.
-	 * @param   string  $group  The name of the plugin group to import (defaults to "content").
-	 *
-	 * @return  void
-	 *
-	 * @since   3.2
-	 * @throws  Exception if there is an error in the form event.
-	 */
-	protected function preprocessForm(\JForm $form, $data, $group = 'content')
-	{
-		// Import the appropriate plugin group.
-		\JPluginHelper::importPlugin($group);
-
-		// Get the dispatcher.
-		$dispatcher = new Dispatcher;
-
-		$event = new Event('onContentPrepareForm');
-		$event->setArgument('form', $form);
-		$event->setArgument('data', $data);
-
-		// Trigger the form preparation event.
-		$results = $dispatcher->dispatch('onContentPrepareForm', $event);
-
-		// Check for errors encountered while preparing the form.
-		if (count($results) && in_array(false, $results, true))
-		{
-			// Get the last error.
-			$error = $dispatcher->getError();
-
-			if (!($error instanceof Exception))
-			{
-				throw new \Exception($error);
-			}
-		}
 	}
 }
