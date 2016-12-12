@@ -12,31 +12,41 @@ How to install
 * Edit composer.json
 * Add into composer.json
 ```
-$ git diff composer.json
-diff --git a/composer.json b/composer.json
-index 9a1b071..1592c83 100644
 --- a/composer.json
 +++ b/composer.json
-@@ -5,6 +5,7 @@
+@@ -5,9 +5,10 @@
      "keywords": ["joomla", "cms"],
      "homepage": "https://github.com/joomla/joomla-cms",
      "license": "GPL-2.0+",
 +    "minimum-stability" : "dev",
      "config": {
          "platform": {
-             "php": "5.3.10"
-@@ -35,7 +36,8 @@
+-            "php": "5.3.10"
++            "php": "5.5.9"
+         },
+         "vendor-dir": "libraries/vendor"
+     },
+@@ -18,7 +19,7 @@
+         "docs":"https://docs.joomla.org"
+     },
+     "require": {
+-        "php": ">=5.3.10",
++        "php": ">=5.5.9",
+         "joomla/application": "~1.5",
+         "joomla/data": "~1.2",
+         "joomla/di": "~1.2",
+@@ -31,7 +32,7 @@
+         "ircmaxell/password-compat": "1.*",
+         "leafo/lessphp": "0.5.0",
+         "paragonie/random_compat": "~1.0",
+-        "phpmailer/phpmailer": "5.2.16",
++        "phpmailer/phpmailer": "5.2.14",
          "symfony/polyfill-php55": "~1.2",
          "symfony/polyfill-php56": "~1.0",
          "symfony/yaml": "2.*",
--        "simplepie/simplepie": "1.3.1"
-+        "simplepie/simplepie": "1.3.1",
-+        "matware-lab/webservices": "dev-develop"
-     },
-     "require-dev": {
-         "phpunit/phpunit": "4.*",
+
 ```
-* $ composer update --ignore-platform-reqs
+* $ composer require matware-lab/webservices
 * Log in to Administrator, go to Discover extension and install Webservices component
 * Copy /www/htaccess.txt to /www/.htaccess and edit RewriteBase if required
 * Test
