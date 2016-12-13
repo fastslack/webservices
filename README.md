@@ -10,7 +10,6 @@ How to install
 * Install a full current Joomla somewhere
 * $ cd JOOMLA_ROOT
 * Edit composer.json
-* Add into composer.json
 ```
 --- a/composer.json
 +++ b/composer.json
