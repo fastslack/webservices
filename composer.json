@@ -9,11 +9,11 @@
     "config": {
        "preferred-install": "dist",
        "platform": {
-           "php": "5.3.10"
+           "php": "5.5.9"
        }
     },
     "require": {
-        "php": ">=5.3.10",
+        "php": ">=5.5.9",
         "joomla/application": "~1.5",
         "joomla/database": "~1.2",
         "joomla/input": "~1.2",
